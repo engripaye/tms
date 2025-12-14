@@ -1,5 +1,6 @@
 package dev.engripaye.taskmanagerbackend.service;
 
+import dev.engripaye.taskmanagerbackend.entity.User;
 import dev.engripaye.taskmanagerbackend.repository.UserRepository;
 import dev.engripaye.taskmanagerbackend.security.JwtService;
 import dev.engripaye.taskmanagerbackend.security.UserDetailsServiceImpl;
@@ -26,6 +27,8 @@ public class UserService {
 
 
     public void register(RegisterRequest request){
+
+        User user = new User();
 
     }
 }
