@@ -5,6 +5,8 @@ import dev.engripaye.taskmanagerbackend.repository.UserRepository;
 import dev.engripaye.taskmanagerbackend.security.JwtService;
 import dev.engripaye.taskmanagerbackend.security.UserDetailsServiceImpl;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,25 @@ public class UserService {
     public void register(RegisterRequest request){
 
         User user = new User();
+        user.setUsername(request.getUsername());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole("USER");
+        userRepository.save(user);
+    }
 
+    public AuthResponse login(LoginRequest request){
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
+
+        UserDetails userDetails =
+                userDetailsService.loadByUsername(request.getUsername());
+
+        String token = jwtService.generateToken(userDetails);
+
+        return new AuthResponse(token);
     }
 }
