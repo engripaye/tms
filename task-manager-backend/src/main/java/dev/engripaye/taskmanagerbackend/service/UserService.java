@@ -1,5 +1,6 @@
 package dev.engripaye.taskmanagerbackend.service;
 
+import dev.engripaye.taskmanagerbackend.dtos.RegisterRequest;
 import dev.engripaye.taskmanagerbackend.entity.User;
 import dev.engripaye.taskmanagerbackend.repository.UserRepository;
 import dev.engripaye.taskmanagerbackend.security.JwtService;
