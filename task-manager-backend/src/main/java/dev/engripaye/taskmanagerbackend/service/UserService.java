@@ -1,5 +1,6 @@
 package dev.engripaye.taskmanagerbackend.service;
 
+import dev.engripaye.taskmanagerbackend.dtos.AuthResponse;
 import dev.engripaye.taskmanagerbackend.dtos.LoginRequest;
 import dev.engripaye.taskmanagerbackend.dtos.RegisterRequest;
 import dev.engripaye.taskmanagerbackend.entity.User;
@@ -48,7 +49,7 @@ public class UserService {
         );
 
         UserDetails userDetails =
-                userDetailsService.loadByUsername(request.getUsername());
+                userDetailsService.loadUserByUsername(request.getUsername());
 
         String token = jwtService.generateToken(userDetails);
 
