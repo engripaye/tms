@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "*")  //for frontend purpose setup
+@CrossOrigin(origins = "*")  //for frontend purpose react setup
 public class AuthController {
 
     private final UserService userService;
